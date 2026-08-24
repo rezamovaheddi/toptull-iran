@@ -69,7 +69,7 @@ export default function ArticlesSection() {
           {/* گرادیان تیره برای خوانایی */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-l from-black/60 via-black/30 to-transparent"
+            className="absolute rounded-2xl bg-white/10 backdrop-blur-md border border-gray-600  md:px-12 text-center shadow-lg inset-0 bg-gradient-to-l from-black/85 via-black/30 to-transparent"
           />
 
           {/* دکمه‌ی بازگشت — سمت راست */}
@@ -82,7 +82,7 @@ export default function ArticlesSection() {
 
           {/* پنل شیشه‌ای — متن وسط */}
           <div className="relative z-10 flex h-full items-center justify-center px-4">
-            <div className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 px-8 py-6 md:px-12 text-center shadow-lg">
+            <div className="text-center">
               <h2 className="text-3xl sm:text-4xl font-bold font-Vazir text-white">
                 مقالات
               </h2>
