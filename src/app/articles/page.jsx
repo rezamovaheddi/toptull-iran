@@ -3,6 +3,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+// import React, { useCallback } from "react";
+// import CountUp from "react-countup";
+// import { AlertCircle, Check } from "lucide-react";
+// import {
+//   useNewsletterStore,
+//   validateEmail,
+// } from "../../store/useNewsletterStore";
+import NewsletterCard from "../../components/newsletterForm/NewsletterCard";
 
 export default function ArticlesSection() {
   const [articles, setArticles] = useState([]);
@@ -136,6 +144,9 @@ export default function ArticlesSection() {
                 />
               </motion.div>
             ))}
+            <div className="col-span-full mt-10 autofill:*: hover:cursor-pointers flex items-center justify-center md:mt-12 md:mb-0">
+              <NewsletterCard />
+            </div>
           </div>
         )}
       </div>
@@ -261,5 +272,18 @@ function ArrowIcon() {
         strokeLinejoin="round"
       />
     </svg>
+  );
+}
+export function NewsLetterCardSection() {
+  return (
+    <>
+      <div>
+        <div className="max-w-7xl mx-auto rounded-y-2  px-4 md:px-6 w-full h-full justify-center items-center">
+          <div>
+            <NewsletterCard />
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
