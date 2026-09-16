@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import NavLinks from "./navLink";
 import MobileMenu from "./MobileNav";
 import SearchBar from "@/components/ui/search/SearchBar";
+import LoginButton from "./LoginButton";
 
 export default function Navbar() {
   const isScrolled = useScrollBar(20);
@@ -37,6 +38,9 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <SearchBar className="hidden lg:flex w-64 xl:w-80" />
+            <div className="hidden md:block">
+              <LoginButton />
+            </div>
             <MobileMenu />
           </div>
         </div>
