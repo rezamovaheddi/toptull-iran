@@ -1,19 +1,16 @@
-import NextAuth from "next-auth";
-import { users } from "../../../../../lib/users";
 import Credentials from "next-auth/providers/credentials";
+import { users } from "../../../../../lib/users";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const authOptions = {
   providers: [
     Credentials({
       credentials: {
-        email: {},
-        password: {},
-        username: {},
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+        username: { label: "Username", type: "text" },
       },
       async authorize(credentials) {
-        const email = credentials.email;
-        const password = credentials.password;
-        const username = credentials.username;
+        const { email, password, username } = credentials;
 
         const user = users.find(
           (user) =>
@@ -34,4 +31,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: "/login",
   },
-});
+};
