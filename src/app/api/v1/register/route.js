@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
-import { users } from "../../../../lib/users";
+import { prisma } from "../../../../lib/prisma";
+import bcrypt from "bcryptjs";
 
 export async function POST(request) {
   try {
     const body = await request.json();
     const { fullName, email, password, username } = body;
+    
     if (!fullName || !email || !password || !username) {
       return NextResponse.json(
         {
@@ -15,12 +17,20 @@ export async function POST(request) {
         },
       );
     }
-    const exiteUser = users.find((user) => user.email === email);
+
+    const exiteUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: email },
+          { username: username }
+        ]
+      }
+    });
 
     if (exiteUser) {
       return NextResponse.json(
         {
-          message: "این ایمیل قبلا وجود دارد",
+          message: "این ایمیل یا نام کاربری قبلا وجود دارد",
         },
         {
           status: 409,
@@ -28,15 +38,16 @@ export async function POST(request) {
       );
     }
 
-    const newUser = {
-      id: crypto.randomUUID(),
-      fullName,
-      username,
-      email,
-      password,
-    };
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    users.push(newUser);
+    const newUser = await prisma.user.create({
+      data: {
+        fullName,
+        username,
+        email,
+        password: hashedPassword,
+      }
+    });
 
     return NextResponse.json(
       {
@@ -56,7 +67,7 @@ export async function POST(request) {
     return NextResponse.json(
       {
         message: "خطایی رخ داد",
-        error: err,
+        error: err.message,
       },
       {
         status: 500,

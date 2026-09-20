@@ -24,7 +24,7 @@ export default function ProductCarousel({ products }) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect(emblaApi);
+    queueMicrotask(() => onSelect(emblaApi));
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);

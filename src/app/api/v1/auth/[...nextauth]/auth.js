@@ -1,5 +1,6 @@
 import Credentials from "next-auth/providers/credentials";
-import { users } from "../../../../../lib/users";
+import { prisma } from "../../../../../lib/prisma";
+import bcrypt from "bcryptjs";
 
 export const authOptions = {
   providers: [
@@ -12,22 +13,31 @@ export const authOptions = {
       async authorize(credentials) {
         const { email, password, username } = credentials;
 
-        const user = users.find(
-          (user) =>
-            user.email === email &&
-            user.password === password &&
-            user.username === username,
-        );
+        // You might want to allow login by either email or username
+        // Here we require both email and username if they are both provided by the form, 
+        // or you can adjust to find by email OR username based on your UI.
+        const user = await prisma.user.findFirst({
+          where: {
+            OR: [
+              { email: email },
+              { username: username },
+            ]
+          }
+        });
+        
         if (!user) return null;
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) return null;
+
         return {
-          id: user.id,
+          id: user.id.toString(),
           username: user.username,
           email: user.email,
         };
       },
     }),
   ],
-
   pages: {
     signIn: "/login",
   },

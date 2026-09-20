@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import "./globals.css";
 
 const vazir = localFont({

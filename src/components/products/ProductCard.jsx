@@ -12,18 +12,11 @@ export default function ProductCard({ product }) {
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="group relative flex flex-col shrink-0 overflow-hidden
-                 w-[150px] sm:w-[165px] lg:w-[175px] h-[280px]
-                 rounded-2xl border border-[#DCE8DF] bg-white
-                 shadow-[0_6px_20px_rgba(0,0,0,0.08)]
-                 transition-shadow duration-300
-                 hover:shadow-[0_14px_34px_rgba(0,0,0,0.14)]"
+      className="group relative flex flex-col shrink-0 overflow-hidden w-[150px] sm:w-[165px] lg:w-[175px] h-[280px] rounded-2xl border border-[#DCE8DF] bg-white shadow-[0_6px_20px_rgba(0,0,0,0.08)] transition-shadow duration-300 hover:shadow-[0_14px_34px_rgba(0,0,0,0.14)]"
     >
       {badge && (
         <span
-          className="absolute top-2.5 left-2.5 z-10 rounded-lg
-                     bg-[rgba(170,160,120,0.9)] px-2.5 py-1.5
-                     text-[12px] leading-none text-white"
+          className="absolute top-2.5 left-2.5 z-10 rounded-lg bg-[rgba(170,160,120,0.9)] px-2.5 py-1.5 text-[12px] leading-none text-white"
         >
           {badge}
         </span>

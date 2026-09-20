@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { NAVITEMs } from "../../constant/Navigation";
-import SearchBar from "@/components/ui/search/SearchBar";
+import SearchBar from "../ui/search/SearchBar";
+import LoginButton from "./LoginButton";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -108,11 +109,10 @@ export default function MobileMenu() {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`block py-3 px-4 rounded-xl text-base font-medium transition-colors ${
-                          isActive
-                            ? "bg-emerald-500/10 text-emerald-700"
-                            : "text-gray-800 hover:bg-white/60"
-                        }`}
+                        className={`block py-3 px-4 rounded-xl text-base font-medium transition-colors ${isActive
+                          ? "bg-emerald-500/10 text-emerald-700"
+                          : "text-gray-800 hover:bg-white/60"
+                          }`}
                       >
                         {item.label}
                       </Link>
@@ -122,6 +122,10 @@ export default function MobileMenu() {
 
                 <motion.div variants={itemVariants} className="mt-4">
                   <SearchBar className="w-full" />
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="mt-7">
+                  <LoginButton />
                 </motion.div>
               </div>
             </motion.div>
