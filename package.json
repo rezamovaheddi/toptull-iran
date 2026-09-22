@@ -4,9 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev -p 3001",
-        "build": "next build",
+        "build": "prisma generate && next build",
         "start": "next start -p 3001",
-        "lint": "eslint"
+        "lint": "eslint",
+        "postinstall": "prisma generate"
     },
     "dependencies": {
         "@emotion/react": "^11.14.0",
@@ -39,7 +40,7 @@
         "babel-plugin-react-compiler": "1.0.0",
         "eslint": "^9",
         "eslint-config-next": "latest",
-        "prisma": "^8.0.0-rc.15",
+        "prisma": "^7.10.0",
         "tailwindcss": "^4"
     }
 }
