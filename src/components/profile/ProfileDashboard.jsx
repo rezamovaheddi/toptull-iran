@@ -56,7 +56,6 @@ export default function ProfileDashboard({ user }) {
             <ArrowRight size={18} />
             <span>بازگشت به فروشگاه</span>
           </Link>
-
           <span className="text-xs text-emerald-800  px-3 py-1 rounded-lg font-medium  ">
             پنل کاربری تاپ‌تول
           </span>
