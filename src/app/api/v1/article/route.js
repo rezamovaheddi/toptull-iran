@@ -8,9 +8,12 @@ export async function GET() {
             data: rawArticles,
         });
     } catch (error) {
-        return NextResponse({
-            success: false,
-            message: error,
-        }, { status: 500 }, );
+        return NextResponse.json(
+            {
+                success: false,
+                message: error?.message || "خطا در دریافت مقالات",
+            },
+            { status: 500 }
+        );
     }
 }

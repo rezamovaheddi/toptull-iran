@@ -20,6 +20,7 @@
         "embla-carousel-react": "^8.6.0",
         "embla-carousel-wheel-gestures": "^8.1.0",
         "framer-motion": "^12.42.2",
+        "jsonwebtoken": "^9.0.3",
         "lucide-react": "^1.26.0",
         "mongodb": "^7.5.0",
         "mongoose": "^9.9.1",

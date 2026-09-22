@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { User, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
 import { loginSchema } from "@/lib/validations/auth";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -66,6 +67,17 @@ export default function LoginForm() {
         setServerError("اطلاعات وارد شده اشتباه است یا کاربری یافت نشد.");
         setIsLoading(false);
       } else {
+        // Fetch session to sync store immediately
+        try {
+          const sessionRes = await fetch("/api/auth/session");
+          const sessionData = await sessionRes.json();
+          if (sessionData?.user) {
+            useAuthStore.getState().setAuth(sessionData.user);
+          }
+        } catch (e) {
+          console.error("Session sync failed:", e);
+        }
+
         router.push("/");
         router.refresh();
       }

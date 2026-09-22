@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import Navbar from "../components/navbar/Navbar";
+import AuthProvider from "../components/providers/AuthProvider";
 import "./globals.css";
 
 const vazir = localFont({
@@ -25,8 +26,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl" className={vazir.variable}>
       <body className={`${vazir.className} antialiased bg-white text-gray-900`}>
-        <Navbar />
-        <main className="pt-16 md:pt-20">{children}</main>
+        <AuthProvider>
+          <Navbar />
+          <main className="pt-16 md:pt-20">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );

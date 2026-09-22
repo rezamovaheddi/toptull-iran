@@ -5,7 +5,7 @@ const globalForPrisma = globalThis;
 
 function makePrismaClient() {
   const adapter = new PrismaBetterSqlite3({
-    url: 'file:./prisma/dev.db',
+    url: 'file:./dev.db',
   });
 
   return new PrismaClient({

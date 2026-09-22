@@ -125,7 +125,7 @@ export default function MobileMenu() {
                 </motion.div>
 
                 <motion.div variants={itemVariants} className="mt-7">
-                  <LoginButton />
+                  <LoginButton isMobile={true} />
                 </motion.div>
               </div>
             </motion.div>
