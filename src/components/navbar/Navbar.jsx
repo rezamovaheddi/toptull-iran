@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import useScrollBar from "../../hook/useScrollBar";
 import Logo from "./Logo";
 import NavLinks from "./navLink";
-import MobileMenu from "./MobileNav";
 import SearchBar from "@/components/ui/search/SearchBar";
 import LoginButton from "./LoginButton";
 
@@ -12,39 +11,57 @@ export default function Navbar() {
   const isScrolled = useScrollBar(20);
 
   return (
-    <motion.header
-      initial={false}
-      animate={{
-        backgroundColor: isScrolled
-          ? "rgba(255, 255, 255, 0.7)"
-          : "rgba(255, 255, 255, 1)",
-        boxShadow: isScrolled
-          ? "0 4px 24px rgba(0, 0, 0, 0.06)"
-          : "0 0 0 rgba(0, 0, 0, 0)",
-      }}
-      transition={{ duration: 0.35, ease: "easeOut" }}
-      className={`fixed top-0 inset-x-0 z-50 transition-[backdrop-filter] duration-300 ${
+    <div
+      className={`fixed top-0 inset-x-0 z-50 pointer-events-none transition-all duration-300 ${
         isScrolled
-          ? "backdrop-blur-xl border-b border-white/40"
-          : "border-b border-transparent"
+          ? "pt-2 md:pt-3 px-3 md:px-6 lg:px-8"
+          : "pt-0 px-0"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <div className="flex items-center gap-8">
-            <Logo />
-            <NavLinks />
-          </div>
-
-          <div className="flex items-center gap-4">
-            <SearchBar className="hidden lg:flex w-64 xl:w-80" />
-            <div className="hidden md:block">
-              <LoginButton />
+      <motion.header
+        initial={false}
+        animate={{
+          maxWidth: isScrolled ? "1240px" : "100%",
+          borderRadius: isScrolled ? "1.25rem" : "0rem",
+          backgroundColor: isScrolled
+            ? "rgba(255, 255, 255, 0.9)"
+            : "rgba(255, 255, 255, 1)",
+          boxShadow: isScrolled
+            ? "0 10px 35px -5px rgba(0, 0, 0, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04)"
+            : "0 0 0 0 rgba(0, 0, 0, 0)",
+          borderColor: isScrolled
+            ? "rgba(255, 255, 255, 0.7)"
+            : "rgba(243, 244, 246, 0.8)",
+        }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className={`pointer-events-auto mx-auto w-full transition-[backdrop-filter] duration-300 border ${
+          isScrolled
+            ? "backdrop-blur-xl border-white/60 shadow-lg"
+            : "border-b border-gray-100 border-x-0 border-t-0"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div
+            className={`flex items-center justify-between gap-4 transition-all duration-300 ${
+              isScrolled ? "h-14 md:h-16" : "h-16 md:h-20"
+            }`}
+          >
+            {/* لوگو و ناوبری اصلی دسکتاپ */}
+            <div className="flex items-center gap-6 lg:gap-8 shrink-0">
+              <Logo />
+              <NavLinks />
             </div>
-            <MobileMenu />
+
+            {/* بخش سمت چپ: جستجو و دکمه ورود/پروفایل */}
+            <div className="flex items-center gap-3 md:gap-4 shrink-0">
+              <SearchBar className="hidden xl:flex w-56 xl:w-72" />
+              <div className="shrink-0">
+                <LoginButton />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </motion.header>
+      </motion.header>
+    </div>
   );
 }

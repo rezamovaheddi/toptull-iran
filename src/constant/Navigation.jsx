@@ -9,7 +9,7 @@
 export const NAVITEMs = [
   { id: "home", label: "صفحه اصلی", href: "/" },
   { id: "products", label: "محصولات", href: "/products" },
-  { id: "others", label: "دسته بندی ", href: "/others" },
+  { id: "others", label: "دسته‌بندی", href: "/#categories" },
   { id: "articles", label: "مقالات", href: "/articles" },
   { id: "about", label: "درباره ما", href: "/about" },
   { id: "contact", label: "تماس با ما", href: "/contact" },

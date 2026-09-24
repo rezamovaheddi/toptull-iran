@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import Navbar from "../components/navbar/Navbar";
+import MobileBottomNav from "../components/navbar/MobileBottomNav";
 import AuthProvider from "../components/providers/AuthProvider";
 import "./globals.css";
 
@@ -28,7 +29,8 @@ export default function RootLayout({ children }) {
       <body className={`${vazir.className} antialiased bg-white text-gray-900`}>
         <AuthProvider>
           <Navbar />
-          <main className="pt-16 md:pt-20">{children}</main>
+          <main className="pt-16 md:pt-20 pb-24 md:pb-0">{children}</main>
+          <MobileBottomNav />
         </AuthProvider>
       </body>
     </html>
